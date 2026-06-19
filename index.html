@@ -7,7 +7,7 @@
   <meta name="description" content="Brookstone Advisory Limited is a Hong Kong-based firm providing corporate treasury, FX risk management, accounting advisory, and Web3 & blockchain finance advisory services." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&family=Noto+Serif+TC:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -33,6 +33,10 @@
       font-size: 16px;
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
+    }
+
+    body.lang-zh {
+      font-family: 'Noto Serif TC', 'Inter', sans-serif;
     }
 
     /* ── NAV ── */
@@ -97,6 +101,46 @@
     .nav-links a:hover { color: var(--ink); }
     .nav-links a:hover::after { transform: scaleX(1); }
 
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+
+    /* Language switcher */
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .lang-btn {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      padding: 5px 10px;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      color: var(--ink-muted);
+      transition: background 0.2s, color 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .lang-btn.active {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .lang-btn:not(.active):hover {
+      background: var(--bg-card);
+      color: var(--ink);
+    }
+
     .nav-cta {
       font-size: 12px;
       font-weight: 500;
@@ -107,7 +151,6 @@
       padding: 10px 24px;
       text-decoration: none;
       transition: background 0.2s;
-      flex-shrink: 0;
     }
 
     .nav-cta:hover { background: var(--gold); }
@@ -158,6 +201,11 @@
       text-decoration: none;
     }
 
+    .nav-mobile .lang-switch {
+      align-self: flex-start;
+      margin-top: 8px;
+    }
+
     /* ── HERO ── */
     #hero {
       min-height: 100vh;
@@ -169,9 +217,7 @@
       overflow: hidden;
     }
 
-    .hero-content {
-      padding: 80px 64px 80px 48px;
-    }
+    .hero-content { padding: 80px 64px 80px 48px; }
 
     .hero-eyebrow {
       font-size: 11px;
@@ -204,10 +250,15 @@
       margin-bottom: 28px;
     }
 
-    .hero-headline em {
-      font-style: italic;
-      color: var(--gold);
+    body.lang-zh .hero-headline {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(36px, 4.5vw, 68px);
+      line-height: 1.2;
     }
+
+    .hero-headline em { font-style: italic; color: var(--gold); }
+
+    body.lang-zh .hero-headline em { font-style: normal; }
 
     .hero-sub {
       font-size: 16px;
@@ -253,15 +304,10 @@
       transition: color 0.2s;
     }
 
-    .btn-ghost::after {
-      content: '→';
-      transition: transform 0.2s;
-    }
-
+    .btn-ghost::after { content: '→'; transition: transform 0.2s; }
     .btn-ghost:hover { color: var(--gold); }
     .btn-ghost:hover::after { transform: translateX(4px); }
 
-    /* Hero right panel */
     .hero-panel {
       height: 100%;
       min-height: 100vh;
@@ -333,6 +379,11 @@
       margin-bottom: 20px;
     }
 
+    body.lang-zh .section-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(26px, 3.5vw, 44px);
+    }
+
     .divider {
       width: 36px;
       height: 1px;
@@ -341,10 +392,7 @@
     }
 
     /* ── ABOUT ── */
-    #about {
-      background: var(--white);
-      border-top: 1px solid var(--rule);
-    }
+    #about { background: var(--white); border-top: 1px solid var(--rule); }
 
     .about-grid {
       display: grid;
@@ -353,25 +401,12 @@
       max-width: 1100px;
     }
 
-    .about-body {
-      font-size: 15.5px;
-      color: var(--ink-soft);
-      line-height: 1.9;
-    }
-
+    .about-body { font-size: 15.5px; color: var(--ink-soft); line-height: 1.9; }
     .about-body p + p { margin-top: 18px; }
 
-    .about-stats {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
+    .about-stats { display: flex; flex-direction: column; gap: 0; }
 
-    .stat-item {
-      padding: 28px 0;
-      border-bottom: 1px solid var(--rule);
-    }
-
+    .stat-item { padding: 28px 0; border-bottom: 1px solid var(--rule); }
     .stat-item:first-child { border-top: 1px solid var(--rule); }
 
     .stat-number {
@@ -387,29 +422,13 @@
     }
 
     .stat-number.visible { opacity: 1; transform: none; }
-
-    .stat-label {
-      font-size: 13px;
-      font-weight: 300;
-      color: var(--ink-muted);
-    }
+    .stat-label { font-size: 13px; font-weight: 300; color: var(--ink-muted); }
 
     /* ── SERVICES ── */
-    #services {
-      background: var(--bg);
-      border-top: 1px solid var(--rule);
-    }
+    #services { background: var(--bg); border-top: 1px solid var(--rule); }
 
-    .services-intro {
-      max-width: 580px;
-      margin-bottom: 56px;
-    }
-
-    .services-intro p {
-      font-size: 15.5px;
-      color: var(--ink-soft);
-      line-height: 1.85;
-    }
+    .services-intro { max-width: 580px; margin-bottom: 56px; }
+    .services-intro p { font-size: 15.5px; color: var(--ink-soft); line-height: 1.85; }
 
     .services-grid {
       display: grid;
@@ -460,19 +479,14 @@
       line-height: 1.25;
     }
 
-    .service-desc {
-      font-size: 13.5px;
-      font-weight: 300;
-      color: var(--ink-soft);
-      line-height: 1.75;
+    body.lang-zh .service-name {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 18px;
     }
 
-    .service-bullets {
-      margin-top: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
+    .service-desc { font-size: 13.5px; font-weight: 300; color: var(--ink-soft); line-height: 1.75; }
+
+    .service-bullets { margin-top: 14px; display: flex; flex-direction: column; gap: 6px; }
 
     .service-bullets li {
       font-size: 12.5px;
@@ -494,10 +508,7 @@
     }
 
     /* ── MARKETS ── */
-    #markets {
-      background: var(--white);
-      border-top: 1px solid var(--rule);
-    }
+    #markets { background: var(--white); border-top: 1px solid var(--rule); }
 
     .markets-grid {
       display: grid;
@@ -505,15 +516,10 @@
       gap: 1px;
       background: var(--rule);
       border: 1px solid var(--rule);
-      margin-top: 0;
       max-width: 900px;
     }
 
-    .market-card {
-      background: var(--white);
-      padding: 40px 32px;
-      text-align: center;
-    }
+    .market-card { background: var(--white); padding: 40px 32px; }
 
     .market-name {
       font-family: 'Cormorant Garamond', serif;
@@ -523,18 +529,15 @@
       margin-bottom: 8px;
     }
 
-    .market-desc {
-      font-size: 12.5px;
-      font-weight: 300;
-      color: var(--ink-muted);
-      line-height: 1.6;
+    body.lang-zh .market-name {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 20px;
     }
 
+    .market-desc { font-size: 12.5px; font-weight: 300; color: var(--ink-muted); line-height: 1.6; }
+
     /* ── CONTACT ── */
-    #contact {
-      background: #1B3D6B;
-      border-top: 1px solid #16325a;
-    }
+    #contact { background: #1B3D6B; border-top: 1px solid #16325a; }
 
     #contact .section-label { color: var(--gold); }
     #contact .section-title { color: var(--white); }
@@ -547,15 +550,9 @@
       max-width: 1100px;
     }
 
-    .contact-left p {
-      font-size: 15px;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.85;
-      margin-bottom: 44px;
-    }
+    .contact-left p { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.85; margin-bottom: 44px; }
 
     .contact-details { display: flex; flex-direction: column; gap: 24px; }
-
     .contact-item { display: flex; flex-direction: column; gap: 5px; }
 
     .contact-item-label {
@@ -566,25 +563,13 @@
       color: var(--gold);
     }
 
-    .contact-item-value {
-      font-size: 14px;
-      font-weight: 300;
-      color: rgba(255,255,255,0.65);
-    }
+    .contact-item-value { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.65); }
 
-    .contact-item-value a {
-      color: rgba(255,255,255,0.65);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
+    .contact-item-value a { color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s; }
     .contact-item-value a:hover { color: var(--gold); }
 
-    /* Form */
     .contact-form { display: flex; flex-direction: column; gap: 18px; }
-
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-
     .form-group { display: flex; flex-direction: column; gap: 8px; }
 
     .form-group label {
@@ -618,10 +603,7 @@
 
     .form-group input:focus,
     .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--gold);
-      background: rgba(255,255,255,0.08);
-    }
+    .form-group textarea:focus { border-color: var(--gold); background: rgba(255,255,255,0.08); }
 
     .form-group textarea { resize: vertical; min-height: 110px; }
 
@@ -633,11 +615,7 @@
       flex-wrap: wrap;
     }
 
-    .form-note {
-      font-size: 11px;
-      color: rgba(255,255,255,0.25);
-      line-height: 1.5;
-    }
+    .form-note { font-size: 11px; color: rgba(255,255,255,0.25); line-height: 1.5; }
 
     .form-submit {
       display: inline-flex;
@@ -657,14 +635,9 @@
       flex-shrink: 0;
     }
 
-    .form-submit:hover { background: #c9a44a; }
+    .form-submit:hover { background: #7dc4ea; }
 
-    #form-success {
-      display: none;
-      font-size: 13px;
-      color: var(--gold);
-      padding: 12px 0;
-    }
+    #form-success { display: none; font-size: 13px; color: var(--gold); padding: 12px 0; }
 
     /* ── FOOTER ── */
     footer {
@@ -689,10 +662,7 @@
 
     .footer-logo span { color: var(--gold); }
 
-    .footer-links {
-      display: flex;
-      gap: 24px;
-    }
+    .footer-links { display: flex; gap: 24px; }
 
     .footer-links a {
       font-size: 12px;
@@ -704,19 +674,10 @@
     }
 
     .footer-links a:hover { color: var(--gold); }
-
-    .footer-copy {
-      font-size: 11px;
-      color: rgba(255,255,255,0.2);
-    }
+    .footer-copy { font-size: 11px; color: rgba(255,255,255,0.2); }
 
     /* ── REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: none; }
 
     @media (prefers-reduced-motion: reduce) {
@@ -736,6 +697,7 @@
       nav { padding: 0 24px; }
       .nav-links, .nav-cta { display: none; }
       .nav-hamburger { display: flex; }
+      .nav-right .nav-cta { display: none; }
       section { padding: 72px 24px; }
       .hero-content { padding: 80px 24px 64px; }
       .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
@@ -757,12 +719,18 @@
   <nav id="nav">
     <a href="#hero" class="nav-logo">Brookstone<span>.</span>Advisory</a>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#markets">Markets</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about" data-en="About" data-zh="關於我們">About</a></li>
+      <li><a href="#services" data-en="Services" data-zh="服務">Services</a></li>
+      <li><a href="#markets" data-en="Markets" data-zh="市場">Markets</a></li>
+      <li><a href="#contact" data-en="Contact" data-zh="聯絡我們">Contact</a></li>
     </ul>
-    <a href="#contact" class="nav-cta">Get in touch</a>
+    <div class="nav-right">
+      <div class="lang-switch">
+        <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" id="btn-zh" onclick="setLang('zh')">繁</button>
+      </div>
+      <a href="#contact" class="nav-cta" data-en="Get in touch" data-zh="立即聯絡">Get in touch</a>
+    </div>
     <button class="nav-hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -770,48 +738,50 @@
 
   <!-- MOBILE MENU -->
   <div class="nav-mobile" id="nav-mobile">
-    <a href="#about" onclick="closeMenu()">About</a>
-    <a href="#services" onclick="closeMenu()">Services</a>
-    <a href="#markets" onclick="closeMenu()">Markets</a>
-    <a href="#contact" onclick="closeMenu()">Contact</a>
+    <a href="#about" onclick="closeMenu()" data-en="About" data-zh="關於我們">About</a>
+    <a href="#services" onclick="closeMenu()" data-en="Services" data-zh="服務">Services</a>
+    <a href="#markets" onclick="closeMenu()" data-en="Markets" data-zh="市場">Markets</a>
+    <a href="#contact" onclick="closeMenu()" data-en="Contact" data-zh="聯絡我們">Contact</a>
+    <div class="lang-switch">
+      <button class="lang-btn active" onclick="setLang('en');closeMenu()">EN</button>
+      <button class="lang-btn" onclick="setLang('zh');closeMenu()">繁</button>
+    </div>
   </div>
 
   <!-- HERO -->
   <section id="hero">
     <div class="hero-content">
-      <div class="hero-eyebrow">Hong Kong · Global Corporate Advisory</div>
+      <div class="hero-eyebrow" data-en="Hong Kong · Global Corporate Advisory" data-zh="香港 · 環球企業顧問">Hong Kong · Global Corporate Advisory</div>
       <h1 class="hero-headline">
-        Specialist advisory for<br>businesses operating<br>across the <em>globe.</em>
+        <span data-en="Specialist advisory for<br>businesses operating<br>across the <em>globe.</em>" data-zh="為環球企業提供<br>專業顧問服務<br><em>縱橫四海。</em>">Specialist advisory for<br>businesses operating<br>across the <em>globe.</em></span>
       </h1>
-      <p class="hero-sub">
-        Brookstone Advisory Limited is a Hong Kong-based firm with 30 years of combined experience, delivering expert advisory services in corporate treasury, FX risk management, accounting, and Web3 finance — to businesses wherever they operate in the world.
-      </p>
+      <p class="hero-sub" data-en="Brookstone Advisory Limited is a Hong Kong-based firm with 30 years of combined experience, delivering expert advisory services in corporate treasury, FX risk management, accounting, and Web3 finance — to businesses wherever they operate in the world." data-zh="Brookstone Advisory Limited 是一家總部位於香港的專業顧問公司，團隊擁有逾30年豐富經驗，為全球各地企業提供企業資金管理、外匯風險管理、會計及 Web3 財務顧問服務。">Brookstone Advisory Limited is a Hong Kong-based firm with 30 years of combined experience, delivering expert advisory services in corporate treasury, FX risk management, accounting, and Web3 finance — to businesses wherever they operate in the world.</p>
       <div class="hero-actions">
-        <a href="#services" class="btn-primary">Our services</a>
-        <a href="#contact" class="btn-ghost">Start a conversation</a>
+        <a href="#services" class="btn-primary" data-en="Our services" data-zh="了解服務">Our services</a>
+        <a href="#contact" class="btn-ghost" data-en="Start a conversation" data-zh="立即聯絡">Start a conversation</a>
       </div>
     </div>
     <div class="hero-panel">
-      <div class="hero-panel-label">Our capabilities</div>
+      <div class="hero-panel-label" data-en="Our capabilities" data-zh="我們的專業範疇">Our capabilities</div>
       <div class="hero-panel-item">
         <div class="hero-panel-item-num">01</div>
-        <div class="hero-panel-item-title">Corporate Treasury Advisory</div>
-        <div class="hero-panel-item-desc">Optimising cash management, liquidity planning, and cross-border fund arrangements.</div>
+        <div class="hero-panel-item-title" data-en="Corporate Treasury Advisory" data-zh="企業資金管理顧問">Corporate Treasury Advisory</div>
+        <div class="hero-panel-item-desc" data-en="Optimising cash management, liquidity planning, and cross-border fund arrangements." data-zh="優化現金管理、流動性規劃及跨境資金安排。">Optimising cash management, liquidity planning, and cross-border fund arrangements.</div>
       </div>
       <div class="hero-panel-item">
         <div class="hero-panel-item-num">02</div>
-        <div class="hero-panel-item-title">FX Risk Management</div>
-        <div class="hero-panel-item-desc">Foreign exchange risk assessment and hedging strategy for international businesses.</div>
+        <div class="hero-panel-item-title" data-en="FX Risk Management" data-zh="企業外匯風險管理">FX Risk Management</div>
+        <div class="hero-panel-item-desc" data-en="Foreign exchange risk assessment and hedging strategy for international businesses." data-zh="為跨境企業提供外匯風險評估及對沖策略建議。">Foreign exchange risk assessment and hedging strategy for international businesses.</div>
       </div>
       <div class="hero-panel-item">
         <div class="hero-panel-item-num">03</div>
-        <div class="hero-panel-item-title">Accounting Advisory</div>
-        <div class="hero-panel-item-desc">Financial reporting, management accounting, and process optimisation support.</div>
+        <div class="hero-panel-item-title" data-en="Accounting Advisory" data-zh="企業會計顧問">Accounting Advisory</div>
+        <div class="hero-panel-item-desc" data-en="Financial reporting, management accounting, and process optimisation support." data-zh="財務報告、管理會計及流程優化支援。">Financial reporting, management accounting, and process optimisation support.</div>
       </div>
       <div class="hero-panel-item">
         <div class="hero-panel-item-num">04</div>
-        <div class="hero-panel-item-title">Web3 & Blockchain Finance</div>
-        <div class="hero-panel-item-desc">Specialist accounting and finance advisory for digital assets and blockchain enterprises.</div>
+        <div class="hero-panel-item-title" data-en="Web3 & Blockchain Finance" data-zh="Web3 及區塊鏈財務">Web3 & Blockchain Finance</div>
+        <div class="hero-panel-item-desc" data-en="Specialist accounting and finance advisory for digital assets and blockchain enterprises." data-zh="為數碼資產及區塊鏈企業提供專業會計及財務顧問服務。">Specialist accounting and finance advisory for digital assets and blockchain enterprises.</div>
       </div>
     </div>
   </section>
@@ -819,34 +789,28 @@
   <!-- ABOUT -->
   <section id="about">
     <div class="reveal">
-      <div class="section-label">About us</div>
-      <h2 class="section-title">Independent expertise.<br>Real-world results.</h2>
+      <div class="section-label" data-en="About us" data-zh="關於我們">About us</div>
+      <h2 class="section-title" data-en="Independent expertise.<br>Real-world results." data-zh="獨立專業。<br>切實成果。">Independent expertise.<br>Real-world results.</h2>
       <div class="divider"></div>
     </div>
     <div class="about-grid reveal">
       <div class="about-body">
-        <p>
-          Brookstone Advisory Limited is a Hong Kong-based professional advisory firm established to help businesses improve financial management efficiency, optimise capital deployment, and strengthen risk management capabilities.
-        </p>
-        <p>
-          Our directors bring a combined 30 years of hands-on experience in financial services and corporate advisory, having served clients across a broad range of industries and business sizes. Our expertise spans corporate treasury management, foreign exchange risk, cross-border fund arrangements, and financial planning.
-        </p>
-        <p>
-          We work with SMEs, import and export companies, cross-border businesses, technology firms, Web3 enterprises, and professional services companies across Hong Kong, Australia, and the United Kingdom. Every engagement is fully independent — we carry no conflicts of interest and no hidden agendas.
-        </p>
+        <p data-en="Brookstone Advisory Limited is a Hong Kong-based professional advisory firm established to help businesses improve financial management efficiency, optimise capital deployment, and strengthen risk management capabilities." data-zh="Brookstone Advisory Limited 是一家總部位於香港的專業顧問公司，致力協助企業提升財務管理效率、優化資金運用，並加強風險管理能力。">Brookstone Advisory Limited is a Hong Kong-based professional advisory firm established to help businesses improve financial management efficiency, optimise capital deployment, and strengthen risk management capabilities.</p>
+        <p data-en="Our directors bring a combined 30 years of hands-on experience in financial services and corporate advisory, having served clients across a broad range of industries and business sizes. Our expertise spans corporate treasury management, foreign exchange risk, cross-border fund arrangements, and financial planning." data-zh="我們的董事團隊擁有合共逾30年金融服務及企業顧問實務經驗，曾服務不同規模及行業的客戶，專業涵蓋企業資金管理、外匯風險、跨境資金安排及財務規劃。">Our directors bring a combined 30 years of hands-on experience in financial services and corporate advisory, having served clients across a broad range of industries and business sizes. Our expertise spans corporate treasury management, foreign exchange risk, cross-border fund arrangements, and financial planning.</p>
+        <p data-en="We work with SMEs, import and export companies, cross-border businesses, technology firms, Web3 enterprises, and professional services companies across Hong Kong, Australia, and the United Kingdom. Every engagement is fully independent — we carry no conflicts of interest and no hidden agendas." data-zh="我們服務的客戶遍及香港、澳洲及英國，涵蓋中小企業、進出口貿易公司、跨境業務企業、科技公司、Web3 企業及專業服務公司。我們保持完全獨立，不存在任何利益衝突或隱藏議程。">We work with SMEs, import and export companies, cross-border businesses, technology firms, Web3 enterprises, and professional services companies across Hong Kong, Australia, and the United Kingdom. Every engagement is fully independent — we carry no conflicts of interest and no hidden agendas.</p>
       </div>
       <div class="about-stats">
         <div class="stat-item">
           <div class="stat-number">30+</div>
-          <div class="stat-label">Years of experience per director in financial & corporate advisory</div>
+          <div class="stat-label" data-en="Years of combined experience in financial & corporate advisory" data-zh="金融及企業顧問合共年資">Years of combined experience in financial & corporate advisory</div>
         </div>
         <div class="stat-item">
           <div class="stat-number">3</div>
-          <div class="stat-label">Markets served — Hong Kong, Australia, and the United Kingdom</div>
+          <div class="stat-label" data-en="Markets served — Hong Kong, Australia, and the United Kingdom" data-zh="服務市場 — 香港、澳洲及英國">Markets served — Hong Kong, Australia, and the United Kingdom</div>
         </div>
         <div class="stat-item">
           <div class="stat-number">4</div>
-          <div class="stat-label">Core service areas covering treasury, FX, accounting, and Web3</div>
+          <div class="stat-label" data-en="Core service areas covering treasury, FX, accounting, and Web3" data-zh="核心服務範疇 — 資金管理、外匯、會計及 Web3">Core service areas covering treasury, FX, accounting, and Web3</div>
         </div>
       </div>
     </div>
@@ -855,10 +819,10 @@
   <!-- SERVICES -->
   <section id="services">
     <div class="services-intro reveal">
-      <div class="section-label">What we do</div>
-      <h2 class="section-title">Our services.</h2>
+      <div class="section-label" data-en="What we do" data-zh="我們的服務">What we do</div>
+      <h2 class="section-title" data-en="Our services." data-zh="專業服務。">Our services.</h2>
       <div class="divider"></div>
-      <p>We provide focused, specialist advisory services for businesses that need expert guidance on treasury, foreign exchange, accounting, and digital asset finance. Every engagement is tailored to the client's specific situation.</p>
+      <p data-en="We provide focused, specialist advisory services for businesses that need expert guidance on treasury, foreign exchange, accounting, and digital asset finance. Every engagement is tailored to the client's specific situation." data-zh="我們為企業提供專注而專業的顧問服務，涵蓋資金管理、外匯、會計及數碼資產財務範疇。每項服務均按客戶的具體情況度身訂造。">We provide focused, specialist advisory services for businesses that need expert guidance on treasury, foreign exchange, accounting, and digital asset finance. Every engagement is tailored to the client's specific situation.</p>
     </div>
     <div class="services-grid">
 
@@ -869,13 +833,13 @@
           <line x1="10" y1="21" x2="16" y2="21"/>
           <line x1="10" y1="25" x2="14" y2="25"/>
         </svg>
-        <div class="service-name">Corporate Treasury Advisory</div>
-        <p class="service-desc">We help businesses optimise how they manage and deploy capital — improving financial efficiency and planning for growth.</p>
+        <div class="service-name" data-en="Corporate Treasury Advisory" data-zh="企業資金管理顧問">Corporate Treasury Advisory</div>
+        <p class="service-desc" data-en="We help businesses optimise how they manage and deploy capital — improving financial efficiency and planning for growth." data-zh="我們協助企業優化資金管理及運用方式，提升財務效益，為業務增長作好規劃。">We help businesses optimise how they manage and deploy capital — improving financial efficiency and planning for growth.</p>
         <ul class="service-bullets">
-          <li>Cash management and liquidity planning</li>
-          <li>Cross-border fund arrangement advisory</li>
-          <li>Working capital optimisation</li>
-          <li>Financial process improvement</li>
+          <li data-en="Cash management and liquidity planning" data-zh="現金管理及流動性規劃">Cash management and liquidity planning</li>
+          <li data-en="Cross-border fund arrangement advisory" data-zh="跨境資金安排顧問服務">Cross-border fund arrangement advisory</li>
+          <li data-en="Working capital optimisation" data-zh="營運資金優化">Working capital optimisation</li>
+          <li data-en="Financial process improvement" data-zh="財務流程改善">Financial process improvement</li>
         </ul>
       </div>
 
@@ -886,13 +850,13 @@
           <path d="M18 4 C26 10 26 26 18 32"/>
           <line x1="4" y1="18" x2="32" y2="18"/>
         </svg>
-        <div class="service-name">Corporate FX Risk Management</div>
-        <p class="service-desc">We advise businesses exposed to foreign currency volatility on how to identify, assess, and manage their FX risk effectively.</p>
+        <div class="service-name" data-en="Corporate FX Risk Management" data-zh="企業外匯風險管理顧問">Corporate FX Risk Management</div>
+        <p class="service-desc" data-en="We advise businesses exposed to foreign currency volatility on how to identify, assess, and manage their FX risk effectively." data-zh="我們為面對外匯波動的企業提供建議，協助識別、評估及有效管理外匯風險。">We advise businesses exposed to foreign currency volatility on how to identify, assess, and manage their FX risk effectively.</p>
         <ul class="service-bullets">
-          <li>FX risk exposure assessment</li>
-          <li>Hedging strategy recommendations</li>
-          <li>Multi-currency cash flow planning</li>
-          <li>FX policy design and review</li>
+          <li data-en="FX risk exposure assessment" data-zh="外匯風險敞口評估">FX risk exposure assessment</li>
+          <li data-en="Hedging strategy recommendations" data-zh="對沖策略建議">Hedging strategy recommendations</li>
+          <li data-en="Multi-currency cash flow planning" data-zh="多幣種現金流規劃">Multi-currency cash flow planning</li>
+          <li data-en="FX policy design and review" data-zh="外匯政策制定及審查">FX policy design and review</li>
         </ul>
       </div>
 
@@ -902,13 +866,13 @@
           <polyline points="6,12 12,8 18,14 28,4"/>
           <polyline points="24,4 28,4 28,8"/>
         </svg>
-        <div class="service-name">Corporate Accounting Advisory</div>
-        <p class="service-desc">We support finance teams with financial reporting, management accounting, and the optimisation of accounting processes and controls.</p>
+        <div class="service-name" data-en="Corporate Accounting Advisory" data-zh="企業會計顧問服務">Corporate Accounting Advisory</div>
+        <p class="service-desc" data-en="We support finance teams with financial reporting, management accounting, and the optimisation of accounting processes and controls." data-zh="我們為財務團隊提供財務報告、管理會計及會計流程與內控優化支援。">We support finance teams with financial reporting, management accounting, and the optimisation of accounting processes and controls.</p>
         <ul class="service-bullets">
-          <li>Financial reporting support</li>
-          <li>Management accounting advisory</li>
-          <li>Accounting process optimisation</li>
-          <li>Internal controls and compliance guidance</li>
+          <li data-en="Financial reporting support" data-zh="財務報告支援">Financial reporting support</li>
+          <li data-en="Management accounting advisory" data-zh="管理會計顧問服務">Management accounting advisory</li>
+          <li data-en="Accounting process optimisation" data-zh="會計流程優化">Accounting process optimisation</li>
+          <li data-en="Internal controls and compliance guidance" data-zh="內部控制及合規指引">Internal controls and compliance guidance</li>
         </ul>
       </div>
 
@@ -916,13 +880,13 @@
         <svg class="service-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M18 4 l4 8 9 1.5 -6.5 6.5 1.5 9 -8-4.5 -8 4.5 1.5-9 -6.5-6.5 9-1.5z"/>
         </svg>
-        <div class="service-name">Web3 & Blockchain Advisory</div>
-        <p class="service-desc">We provide specialist accounting and finance advisory for businesses operating in the digital asset and blockchain space — an area requiring dedicated expertise.</p>
+        <div class="service-name" data-en="Web3 & Blockchain Advisory" data-zh="Web3 及區塊鏈顧問服務">Web3 & Blockchain Advisory</div>
+        <p class="service-desc" data-en="We provide specialist accounting and finance advisory for businesses operating in the digital asset and blockchain space — an area requiring dedicated expertise." data-zh="我們為數碼資產及區塊鏈行業的企業提供專業會計及財務顧問服務——此領域需要專門的專業知識。">We provide specialist accounting and finance advisory for businesses operating in the digital asset and blockchain space — an area requiring dedicated expertise.</p>
         <ul class="service-bullets">
-          <li>Digital asset financial management</li>
-          <li>Blockchain enterprise accounting</li>
-          <li>Web3 compliance and reporting</li>
-          <li>Token and crypto treasury advisory</li>
+          <li data-en="Digital asset financial management" data-zh="數碼資產財務管理">Digital asset financial management</li>
+          <li data-en="Blockchain enterprise accounting" data-zh="區塊鏈企業會計">Blockchain enterprise accounting</li>
+          <li data-en="Web3 compliance and reporting" data-zh="Web3 合規及報告">Web3 compliance and reporting</li>
+          <li data-en="Token and crypto treasury advisory" data-zh="代幣及加密貨幣資金管理顧問">Token and crypto treasury advisory</li>
         </ul>
       </div>
 
@@ -932,25 +896,23 @@
   <!-- MARKETS -->
   <section id="markets">
     <div class="reveal">
-      <div class="section-label">Where we work</div>
-      <h2 class="section-title">Our markets.</h2>
+      <div class="section-label" data-en="Where we work" data-zh="我們的市場">Where we work</div>
+      <h2 class="section-title" data-en="Our markets." data-zh="服務市場。">Our markets.</h2>
       <div class="divider"></div>
-      <p style="font-size:15.5px; color:var(--ink-soft); line-height:1.85; max-width:560px; margin-bottom:48px;">
-        We currently serve corporate clients across Hong Kong, Australia, and the United Kingdom, with a vision to expand into further markets as we grow. Our focus is on businesses operating cross-border between Asia, Oceania, and Europe.
-      </p>
+      <p style="font-size:15.5px; color:var(--ink-soft); line-height:1.85; max-width:560px; margin-bottom:48px;" data-en="We currently serve corporate clients across Hong Kong, Australia, and the United Kingdom, with a vision to expand into further markets as we grow. Our focus is on businesses operating cross-border between Asia, Oceania, and Europe." data-zh="我們現時服務香港、澳洲及英國的企業客戶，並致力隨業務發展拓展至更多市場。我們專注於在亞洲、大洋洲及歐洲之間跨境營運的企業。">We currently serve corporate clients across Hong Kong, Australia, and the United Kingdom, with a vision to expand into further markets as we grow. Our focus is on businesses operating cross-border between Asia, Oceania, and Europe.</p>
     </div>
     <div class="markets-grid reveal">
       <div class="market-card">
-        <div class="market-name">Hong Kong</div>
-        <p class="market-desc">Our home base and primary market. We work with local SMEs, trading companies, and multinational businesses headquartered or operating in Hong Kong.</p>
+        <div class="market-name" data-en="Hong Kong" data-zh="香港">Hong Kong</div>
+        <p class="market-desc" data-en="Our home base and primary market. We work with local SMEs, trading companies, and multinational businesses headquartered or operating in Hong Kong." data-zh="我們的總部及主要市場。我們服務香港本地中小企業、貿易公司及在港設立總部或營運的跨國企業。">Our home base and primary market. We work with local SMEs, trading companies, and multinational businesses headquartered or operating in Hong Kong.</p>
       </div>
       <div class="market-card">
-        <div class="market-name">Australia</div>
-        <p class="market-desc">We advise Australian businesses expanding into Asia, as well as Asia-based businesses with Australian operations or investment interests.</p>
+        <div class="market-name" data-en="Australia" data-zh="澳洲">Australia</div>
+        <p class="market-desc" data-en="We advise Australian businesses expanding into Asia, as well as Asia-based businesses with Australian operations or investment interests." data-zh="我們為拓展亞洲業務的澳洲企業，以及在澳洲有業務或投資的亞洲企業提供顧問服務。">We advise Australian businesses expanding into Asia, as well as Asia-based businesses with Australian operations or investment interests.</p>
       </div>
       <div class="market-card">
-        <div class="market-name">United Kingdom</div>
-        <p class="market-desc">We support UK-based businesses with cross-border treasury and FX needs, and Hong Kong companies with existing operations or investment interests in the United Kingdom.</p>
+        <div class="market-name" data-en="United Kingdom" data-zh="英國">United Kingdom</div>
+        <p class="market-desc" data-en="We support UK-based businesses with cross-border treasury and FX needs, and Hong Kong companies with existing operations or investment interests in the United Kingdom." data-zh="我們為有跨境資金及外匯需求的英國企業，以及在英國已有業務或投資的香港公司提供支援。">We support UK-based businesses with cross-border treasury and FX needs, and Hong Kong companies with existing operations or investment interests in the United Kingdom.</p>
       </div>
     </div>
   </section>
@@ -959,77 +921,63 @@
   <section id="contact">
     <div class="contact-grid">
       <div class="contact-left reveal">
-        <div class="section-label">Contact</div>
-        <h2 class="section-title">Let's talk.</h2>
+        <div class="section-label" data-en="Contact" data-zh="聯絡我們">Contact</div>
+        <h2 class="section-title" data-en="Let's talk." data-zh="歡迎聯絡。">Let's talk.</h2>
         <div class="divider"></div>
-        <p>
-          Whether you need help managing treasury risk, navigating foreign exchange exposure, or building out your accounting processes — we'd welcome the conversation. All enquiries are handled in strict confidence.
-        </p>
+        <p data-en="Whether you need help managing treasury risk, navigating foreign exchange exposure, or building out your accounting processes — we'd welcome the conversation. All enquiries are handled in strict confidence." data-zh="無論您需要協助管理資金風險、應對外匯敞口，還是優化會計流程，我們都歡迎與您交流。所有查詢均嚴格保密。">Whether you need help managing treasury risk, navigating foreign exchange exposure, or building out your accounting processes — we'd welcome the conversation. All enquiries are handled in strict confidence.</p>
         <div class="contact-details">
           <div class="contact-item">
-            <span class="contact-item-label">Location</span>
-            <span class="contact-item-value">Hong Kong SAR, China</span>
+            <span class="contact-item-label" data-en="Location" data-zh="地址">Location</span>
+            <span class="contact-item-value" data-en="Hong Kong SAR, China" data-zh="中國香港特別行政區">Hong Kong SAR, China</span>
           </div>
           <div class="contact-item">
-            <span class="contact-item-label">Email</span>
+            <span class="contact-item-label" data-en="Email" data-zh="電郵">Email</span>
             <span class="contact-item-value">
               <a href="mailto:info@brookstone-advisory.com">info@brookstone-advisory.com</a>
             </span>
           </div>
           <div class="contact-item">
-            <span class="contact-item-label">Working hours</span>
-            <span class="contact-item-value">Mon–Fri, 9:00–18:00 HKT (UTC+8)</span>
+            <span class="contact-item-label" data-en="Working hours" data-zh="辦公時間">Working hours</span>
+            <span class="contact-item-value" data-en="Mon–Fri, 9:00–18:00 HKT (UTC+8)" data-zh="週一至週五，09:00–18:00（香港時間 UTC+8）">Mon–Fri, 9:00–18:00 HKT (UTC+8)</span>
           </div>
         </div>
       </div>
       <div class="reveal">
-        <!--
-          FORMSPREE SETUP:
-          1. Go to https://formspree.io and create a free account
-          2. Create a new form → copy your form ID (looks like: xpwzabcd)
-          3. Replace YOUR_FORM_ID below with your actual form ID
-          4. Formspree will email all submissions to your address
-        -->
-        <form
-          class="contact-form"
-          action="https://formspree.io/f/YOUR_FORM_ID"
-          method="POST"
-          id="contact-form"
-        >
+        <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="contact-form">
           <div class="form-row">
             <div class="form-group">
-              <label for="name">Full name</label>
+              <label for="name" data-en="Full name" data-zh="姓名">Full name</label>
               <input type="text" id="name" name="name" placeholder="Jane Smith" required />
             </div>
             <div class="form-group">
-              <label for="company">Company</label>
+              <label for="company" data-en="Company" data-zh="公司名稱">Company</label>
               <input type="text" id="company" name="company" placeholder="Your organisation" />
             </div>
           </div>
           <div class="form-group">
-            <label for="email">Email address</label>
+            <label for="email" data-en="Email address" data-zh="電郵地址">Email address</label>
             <input type="email" id="email" name="email" placeholder="jane@company.com" required />
           </div>
           <div class="form-group">
-            <label for="service">Area of interest</label>
+            <label for="service" data-en="Area of interest" data-zh="服務範疇">Area of interest</label>
             <select id="service" name="service">
-              <option value="">Select a service</option>
-              <option>Corporate Treasury Advisory</option>
-              <option>Corporate FX Risk Management</option>
-              <option>Corporate Accounting Advisory</option>
-              <option>Web3 &amp; Blockchain Advisory</option>
-              <option>Other</option>
+              <option value="" data-en="Select a service" data-zh="請選擇服務">Select a service</option>
+              <option data-en="Corporate Treasury Advisory" data-zh="企業資金管理顧問">Corporate Treasury Advisory</option>
+              <option data-en="Corporate FX Risk Management" data-zh="企業外匯風險管理顧問">Corporate FX Risk Management</option>
+              <option data-en="Corporate Accounting Advisory" data-zh="企業會計顧問服務">Corporate Accounting Advisory</option>
+              <option data-en="Web3 &amp; Blockchain Advisory" data-zh="Web3 及區塊鏈顧問服務">Web3 &amp; Blockchain Advisory</option>
+              <option data-en="Other" data-zh="其他">Other</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="message">How can we help?</label>
+            <label for="message" data-en="How can we help?" data-zh="請簡述您的需求">How can we help?</label>
             <textarea id="message" name="message" placeholder="Briefly describe your situation or enquiry..." required></textarea>
           </div>
           <div class="form-footer">
-            <p class="form-note">We respond to all enquiries<br>within one business day.</p>
-            <button type="submit" class="form-submit">Send enquiry →</button>
+            <p class="form-note" data-en="We respond to all enquiries within one business day." data-zh="我們將於一個工作天內回覆所有查詢。">We respond to all enquiries within one business day.</p>
+            <button type="submit" class="form-submit" data-en="Send enquiry →" data-zh="發送查詢 →">Send enquiry →</button>
           </div>
-          <div id="form-success">
+          <div id="form-success" data-en="Thank you — we'll be in touch shortly." data-zh="感謝您的查詢——我們將盡快與您聯繫。">
             Thank you — we'll be in touch shortly.
           </div>
         </form>
@@ -1041,20 +989,22 @@
   <footer>
     <a href="#hero" class="footer-logo">Brookstone<span>.</span>Advisory</a>
     <div class="footer-links">
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#markets">Markets</a>
-      <a href="#contact">Contact</a>
+      <a href="#about" data-en="About" data-zh="關於我們">About</a>
+      <a href="#services" data-en="Services" data-zh="服務">Services</a>
+      <a href="#markets" data-en="Markets" data-zh="市場">Markets</a>
+      <a href="#contact" data-en="Contact" data-zh="聯絡我們">Contact</a>
     </div>
-    <div class="footer-copy">© 2026 Brookstone Advisory Limited. All rights reserved.</div>
+    <div class="footer-copy" data-en="© 2026 Brookstone Advisory Limited. All rights reserved." data-zh="© 2026 Brookstone Advisory Limited。版權所有。">© 2026 Brookstone Advisory Limited. All rights reserved.</div>
   </footer>
 
   <script>
+    // Nav scroll shadow
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 10);
     });
 
+    // Mobile menu
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('nav-mobile');
 
@@ -1068,6 +1018,52 @@
       hamburger.classList.remove('open');
     }
 
+    // ── LANGUAGE SWITCHER ──
+    function setLang(lang) {
+      const isZh = lang === 'zh';
+      document.documentElement.lang = isZh ? 'zh-Hant' : 'en';
+      document.body.classList.toggle('lang-zh', isZh);
+
+      // Update all data-en / data-zh elements
+      document.querySelectorAll('[data-en][data-zh]').forEach(el => {
+        const text = isZh ? el.getAttribute('data-zh') : el.getAttribute('data-en');
+        // Use innerHTML for elements that may contain <br> or <em>
+        if (text.includes('<')) {
+          el.innerHTML = text;
+        } else {
+          el.textContent = text;
+        }
+      });
+
+      // Update textarea placeholder
+      const textarea = document.getElementById('message');
+      if (textarea) {
+        textarea.placeholder = isZh ? '請簡述您的情況或查詢內容…' : 'Briefly describe your situation or enquiry...';
+      }
+
+      // Update input placeholders
+      document.getElementById('name').placeholder = isZh ? '張三' : 'Jane Smith';
+      document.getElementById('company').placeholder = isZh ? '您的公司名稱' : 'Your organisation';
+      document.getElementById('email').placeholder = 'jane@company.com';
+
+      // Update active button
+      document.getElementById('btn-en').classList.toggle('active', !isZh);
+      document.getElementById('btn-zh').classList.toggle('active', isZh);
+
+      // Sync mobile lang buttons
+      document.querySelectorAll('.nav-mobile .lang-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', isZh ? i === 1 : i === 0);
+      });
+
+      // Store preference
+      localStorage.setItem('ba-lang', lang);
+    }
+
+    // Load saved preference
+    const savedLang = localStorage.getItem('ba-lang');
+    if (savedLang === 'zh') setLang('zh');
+
+    // Scroll reveal
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -1079,6 +1075,7 @@
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
+    // Stat number reveal
     const statObserver = new IntersectionObserver((entries) => {
       entries.forEach((e, i) => {
         if (e.isIntersecting) {
@@ -1090,11 +1087,12 @@
 
     document.querySelectorAll('.stat-number').forEach(el => statObserver.observe(el));
 
+    // Contact form
     const form = document.getElementById('contact-form');
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const btn = form.querySelector('.form-submit');
-      btn.textContent = 'Sending…';
+      btn.textContent = document.body.classList.contains('lang-zh') ? '發送中…' : 'Sending…';
       btn.disabled = true;
 
       try {
@@ -1108,11 +1106,11 @@
           document.getElementById('form-success').style.display = 'block';
           btn.style.display = 'none';
         } else {
-          btn.textContent = 'Try again →';
+          btn.textContent = document.body.classList.contains('lang-zh') ? '請重試 →' : 'Try again →';
           btn.disabled = false;
         }
       } catch {
-        btn.textContent = 'Try again →';
+        btn.textContent = document.body.classList.contains('lang-zh') ? '請重試 →' : 'Try again →';
         btn.disabled = false;
       }
     });
